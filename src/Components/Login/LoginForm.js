@@ -1,30 +1,20 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../Forms/Input'
 import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
+import { UserContext } from '../../UserContext'
 
 const LoginForm = () => {
-    const username = useForm();
-    const password = useForm();
+    const username = useForm(),
+        password = useForm(),
+        {userLogin} = React.useContext(UserContext);
 
-
-    function handleSubmit(event) {
-        event.preventDefault();
+    async function handleSubmit(event) {
+        event.preventDefault(); 
 
         if (username.validate() && password.validate()) {
-            fetch('https://dogsapi.origamid.dev/json/jwt-auth/v1/token', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify()
-            }).then(response => {
-                console.log(response);
-                return response.json();
-            }).then(json => {
-                console.log(json);
-            })
+            userLogin(username.value, password.value);
         }
     }
 
