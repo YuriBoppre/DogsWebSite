@@ -1,11 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styles from "./PhotoContent.module.css";
-import PhotoComments from "./PhotoComments";
+import React from 'react';
+import styles from './PhotoContent.module.css';
+import { Link } from 'react-router-dom';
+import PhotoComments from './PhotoComments';
 
 const PhotoContent = ({ data }) => {
   const { photo, comments } = data;
-
   return (
     <div className={styles.photo}>
       <div className={styles.img}>
@@ -20,8 +19,8 @@ const PhotoContent = ({ data }) => {
           <h1 className="title">
             <Link to={`/foto/${photo.id}`}>{photo.title}</Link>
           </h1>
-          <ul className={styles.attibutes}>
-            <li>{photo.peso} Kg</li>
+          <ul className={styles.attributes}>
+            <li>{photo.peso} kg</li>
             <li>{photo.idade} anos</li>
           </ul>
         </div>
