@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./UserPhotoPost.module.css";
 import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
@@ -7,6 +6,8 @@ import Input from "../Forms/Input";
 import Button from "../Forms/Button";
 import Error from "../Helper/Error";
 import { PHOTO_POST } from "../../api";
+import { useNavigate } from "react-router-dom";
+import Head from "../Helper/Head";
 
 const UserPhotoPost = () => {
   const nome = useForm(),
@@ -22,9 +23,7 @@ const UserPhotoPost = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     const formData = new FormData();
-
     formData.append("img", img.raw);
     formData.append("nome", nome.value);
     formData.append("peso", peso.value);
@@ -32,7 +31,6 @@ const UserPhotoPost = () => {
 
     const token = window.localStorage.getItem("token"),
       { url, options } = PHOTO_POST(formData, token);
-
     request(url, options);
   }
 
@@ -45,6 +43,7 @@ const UserPhotoPost = () => {
 
   return (
     <section className={`${styles.photoPost} animeLeft`}>
+      <Head title="Poste sua foto" />
       <form onSubmit={handleSubmit}>
         <Input label="Nome" type="text" name="nome" {...nome} />
         <Input label="Peso" type="number" name="peso" {...peso} />
@@ -67,7 +66,7 @@ const UserPhotoPost = () => {
         {img.preview && (
           <div
             className={styles.preview}
-            style={{ backgroundImage: `url(${img.preview})` }}
+            style={{ backgroundImage: `url('${img.preview}')` }}
           ></div>
         )}
       </div>
