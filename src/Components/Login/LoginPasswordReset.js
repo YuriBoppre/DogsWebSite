@@ -1,26 +1,28 @@
-import React from "react";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import useForm from "../../Hooks/useForm";
-import useFetch from "../../Hooks/useFetch";
-import { PASSWORD_RESET } from "../../api";
-import Error from "../Helper/Error";
-import Head from "../Helper/Head";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+import useForm from '../../Hooks/useForm';
+import useFetch from '../../Hooks/useFetch';
+import { PASSWORD_RESET } from '../../api';
+import Error from '../Helper/Error';
+import Head from '../Helper/Head';
+import { ROUTES } from '../../constants';
 
 const LoginPasswordReset = () => {
-  const [login, setLogin] = React.useState(""),
-    [key, setKey] = React.useState(""),
-    password = useForm(""),
+  const [login, setLogin] = React.useState(''),
+    [key, setKey] = React.useState(''),
+    password = useForm(''),
     { error, loading, request } = useFetch(),
     navigate = useNavigate();
 
   React.useEffect(() => {
     const params = new URLSearchParams(window.location.search),
-      key = params.get("key"),
-      login = params.get("login");
+      keyParam = params.get('key'),
+      loginParam = params.get('login');
 
-    if (key) setKey(key);
-    if (login) setLogin(login);
+    if (keyParam) setKey(keyParam);
+    if (loginParam) setLogin(loginParam);
   }, []);
 
   async function handleSubmit(event) {
@@ -35,14 +37,16 @@ const LoginPasswordReset = () => {
 
       const { response } = await request(url, options);
 
-      if (response.ok) navigate("/login");
+      if (response && response.ok) {
+        navigate(ROUTES.LOGIN);
+      }
     }
   }
 
   return (
     <section className="animeLeft">
       <Head title="Resete a senha" />
-      <h1 className="title">Resete a Senha </h1>
+      <h1 className="title">Resete a Senha</h1>
       <form onSubmit={handleSubmit}>
         <Input
           label="Nova Senha"

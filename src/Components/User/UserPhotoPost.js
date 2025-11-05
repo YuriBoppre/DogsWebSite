@@ -1,13 +1,15 @@
-import React from "react";
-import styles from "./UserPhotoPost.module.css";
-import useForm from "../../Hooks/useForm";
-import useFetch from "../../Hooks/useFetch";
-import Input from "../Forms/Input";
-import Button from "../Forms/Button";
-import Error from "../Helper/Error";
-import { PHOTO_POST } from "../../api";
-import { useNavigate } from "react-router-dom";
-import Head from "../Helper/Head";
+import React from 'react';
+import styles from './UserPhotoPost.module.css';
+import useForm from '../../Hooks/useForm';
+import useFetch from '../../Hooks/useFetch';
+import Input from '../Forms/Input';
+import Button from '../Forms/Button';
+import Error from '../Helper/Error';
+import { PHOTO_POST } from '../../api';
+import { useNavigate } from 'react-router-dom';
+import Head from '../Helper/Head';
+import StorageService from '../../services/StorageService';
+import { ROUTES } from '../../constants';
 
 const UserPhotoPost = () => {
   const nome = useForm(),
@@ -18,19 +20,19 @@ const UserPhotoPost = () => {
     navigate = useNavigate();
 
   React.useEffect(() => {
-    if (data) navigate("/conta");
+    if (data) navigate(ROUTES.ACCOUNT);
   }, [data, navigate]);
 
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("img", img.raw);
-    formData.append("nome", nome.value);
-    formData.append("peso", peso.value);
-    formData.append("idade", idade.value);
+    formData.append('img', img.raw);
+    formData.append('nome', nome.value);
+    formData.append('peso', peso.value);
+    formData.append('idade', idade.value);
 
-    const token = window.localStorage.getItem("token"),
-      { url, options } = PHOTO_POST(formData, token);
+    const token = StorageService.getToken();
+    const { url, options } = PHOTO_POST(formData, token);
     request(url, options);
   }
 
@@ -67,7 +69,7 @@ const UserPhotoPost = () => {
           <div
             className={styles.preview}
             style={{ backgroundImage: `url('${img.preview}')` }}
-          ></div>
+          />
         )}
       </div>
     </section>

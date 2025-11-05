@@ -1,0 +1,14 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest"
+  ],
+  "rules": {
+    "react/prop-types": "warn",
+    "no-console": "warn",
+    "react/react-in-jsx-scope": "off",
+    "no-unused-vars": "warn",
+    "prefer-const": "warn"
+  }
+}
+

@@ -1,7 +1,9 @@
-import React from "react";
-import FeedModal from "./FeedModal";
-import FeedPhotos from "./FeedPhotos";
-import PropTypes from "prop-types";
+import React from 'react';
+import FeedModal from './FeedModal';
+import FeedPhotos from './FeedPhotos';
+import PropTypes from 'prop-types';
+import { PAGINATION } from '../../constants';
+import styles from './Feed.module.css';
 
 const Feed = ({ user }) => {
   const [modalPhoto, setModalPhoto] = React.useState(null),
@@ -9,26 +11,32 @@ const Feed = ({ user }) => {
     [infinite, setInfinite] = React.useState(true);
 
   React.useEffect(() => {
-    let wait = false;
+    let isThrottling = false;
+
     function infiniteScroll() {
       if (infinite) {
         const scroll = window.scrollY,
           height = document.body.offsetHeight - window.innerHeight;
-        if (scroll > height * 0.75 && !wait) {
+
+        if (
+          scroll > height * PAGINATION.SCROLL_THRESHOLD &&
+          !isThrottling
+        ) {
           setPages((pages) => [...pages, pages.length + 1]);
-          wait = true;
+          isThrottling = true;
+
           setTimeout(() => {
-            wait = false;
-          }, 500);
+            isThrottling = false;
+          }, PAGINATION.INFINITE_SCROLL_DELAY);
         }
       }
     }
 
-    window.addEventListener("wheel", infiniteScroll);
-    window.addEventListener("scroll", infiniteScroll);
+    window.addEventListener('wheel', infiniteScroll);
+    window.addEventListener('scroll', infiniteScroll);
     return () => {
-      window.removeEventListener("wheel", infiniteScroll);
-      window.removeEventListener("scroll", infiniteScroll);
+      window.removeEventListener('wheel', infiniteScroll);
+      window.removeEventListener('scroll', infiniteScroll);
     };
   }, [infinite]);
 
@@ -47,13 +55,7 @@ const Feed = ({ user }) => {
         />
       ))}
       {!infinite && !user && (
-        <p
-          style={{
-            textAlign: "center",
-            padding: "2rem 0 4rem 0",
-            color: "#888",
-          }}
-        >
+        <p className={styles.endMessage}>
           Não existem mais postagens.
         </p>
       )}
