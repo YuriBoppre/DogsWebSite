@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# DogsWebSite
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DogsWebSite é uma rede social para pets onde usuários podem criar perfis, postar fotos, curtir, comentar e acompanhar estatísticas do próprio perfil. O objetivo é oferecer uma experiência simples e agradável para quem gosta de compartilhar momentos dos seus animais de estimação.
 
-## Available Scripts
+## Principais funcionalidades
 
-In the project directory, you can run:
+- Postar fotos e descrições
+- Curtir e comentar publicações
+- Visualizar perfil de usuário com estatísticas e gráficos
+- Modal de visualização de fotos e interação (comentários)
 
-### `npm start`
+## Tecnologias
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- React
+- react-router-dom
+- Victory
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Instalação (local)
 
-### `npm test`
+Recomenda-se ter o Node.js instalado (versão 14+ ou compatível). No diretório do projeto, execute:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```powershell
+npm install
+```
 
-### `npm run build`
+Scripts importantes disponíveis (via `package.json`):
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```powershell
+npm start    # Executa a aplicação em modo de desenvolvimento
+npm run build # Gera a build de produção na pasta build
+npm test     # Executa os testes
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Estrutura básica do projeto
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `public/` - arquivos estáticos (index.html, manifest)
+- `src/` - código fonte React (componentes, hooks, serviços, etc.)
+- `src/Components` - componentes reutilizáveis e páginas
+- `src/services` - serviços (ex.: StorageService)
+- `src/utils` e `src/Hooks` - utilitários e hooks personalizados
 
-### `npm run eject`
+## Usuários relacionados ao projeto
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Autor / Owner do repositório: YuriBoppre (GitHub: YuriBoppre)
+- Contrib: Alex Farias (Github: Alex-Farias) e Matheus Araldi (Github: Araldi42) 
+- Branch de desenvolvimento atual: `develop_RefactoryToCleanCode`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Observações
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este README foi simplificado para refletir rapidamente o projeto. Para detalhes de arquitetura e decisões de refatoração, confira os arquivos `ANALISE_REFATORACAO.md` e `DESCRITIVO_MUDANCAS_REFATORACAO.md` na raiz do repositório.
